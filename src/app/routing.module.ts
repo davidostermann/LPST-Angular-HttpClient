@@ -4,6 +4,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { UserFormComponent } from './user-form/user-form.component';
+import { UserPostsComponent } from './user-posts/user-posts.component';
 
 const ROUTES: Routes = [
   {
@@ -22,7 +23,8 @@ const ROUTES: Routes = [
     path: 'users/:id',
     component: UserDetailComponent,
     children: [
-      { path: 'edit', component: UserFormComponent}
+      { path: 'edit', component: UserFormComponent},
+      { path: 'posts', component: UserPostsComponent},
     ]
   },
   {

@@ -1,0 +1,16 @@
+<div *ngIf="posts && posts.length > 0">
+  <mat-list>
+    <mat-list-item *ngFor="let p of posts">
+      {{ p.title }}
+    </mat-list-item>
+  </mat-list>
+</div>
+
+<p *ngIf="posts && posts.length == 0">
+  Aucun article pour cet utilisateur.
+</p>
+
+<div *ngIf="!posts">
+  <mat-spinner></mat-spinner>
+  <p class="mat-h4">Chargement...</p>
+</div>

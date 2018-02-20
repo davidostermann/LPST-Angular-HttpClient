@@ -21,6 +21,7 @@ export class UserFormComponent implements OnInit {
   onSubmit() {
     console.log('ONSUBMIT user : ', this.user);
     // 1. this.userService.update(this.user)
+    this.userService.update().subscribe();
     // 2. Afficher un message de confirmation de la mise à jour
     // 3. Fermer le formulaire d'edition
   }
