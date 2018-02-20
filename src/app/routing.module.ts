@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserListComponent } from './user-list/user-list.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
-// import { ContentComponent } from './content/content.component';
+import { UserFormComponent } from './user-form/user-form.component';
 
 const ROUTES: Routes = [
   {
@@ -13,12 +13,20 @@ const ROUTES: Routes = [
   },
   {
     component: UserListComponent,
-    path: 'users',
-    children:  [
-      { path: ':id', component: UserDetailComponent }
+    path: 'users'
+    // children:  [
+    //   { path: ':id', component: UserDetailComponent }
+    // ]
+  },
+  {
+    path: 'users/:id',
+    component: UserDetailComponent,
+    children: [
+      { path: 'edit', component: UserFormComponent}
     ]
   },
-  { component: PostListComponent,
+  {
+    component: PostListComponent,
     path: 'posts'
   }
 ];

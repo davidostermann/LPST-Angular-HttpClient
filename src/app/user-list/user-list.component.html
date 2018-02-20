@@ -1,6 +1,9 @@
 <mat-list>
   <mat-list-item *ngFor="let u of users" >
-    <a href="" [routerLink]="u.id">{{ u.name }}</a>
+    <!-- <a href="" [routerLink]="u.id">{{ u.name }}</a> -->
+    <!-- <a href="" [routerLink]="['/user',{id:u.id, foo: 'bar'}]">{{ u.name }}</a> -->
+    <a href="" routerLink="/users/{{u.id}}">{{ u.name }}</a>
+
   </mat-list-item>
 </mat-list>
 <p *ngIf="errText">{{ errText }}</p>

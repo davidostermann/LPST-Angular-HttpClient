@@ -1,0 +1,12 @@
+<form #userForm="ngForm" (ngSubmit)="onSubmit()" fxLayout="column" class="container">
+  <mat-form-field>
+    <input matInput type="text" name="name" [(ngModel)]="user.name">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" name="jobTitle" [(ngModel)]="user.jobTitle">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="text" name="img" [(ngModel)]="user.image">
+  </mat-form-field>
+  <button mat-raised-button type="submit">Envoyer</button>
+</form>
