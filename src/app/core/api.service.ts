@@ -5,6 +5,7 @@ import { Iuser } from './iuser';
 import { Ipost } from './ipost';
 import { User } from './user';
 import { map } from 'rxjs/operators';
+import { Itag } from './itag';
 
 const HOST = 'http://localhost:3000';
 
@@ -34,8 +35,20 @@ export class ApiService {
     return this.http.get(`${HOST}/posts`) as Observable<Ipost[]>;
   }
 
+  getPost(id: number): Observable<Ipost> {
+    return this.http.get(`${HOST}/posts/${id}`) as Observable<Ipost>;
+  }
+
   getUserPosts(id): Observable<Ipost[]> {
     return this.http.get(`${HOST}/users/${id}/posts`) as Observable<Ipost[]>;
+  }
+
+  updatePost(post: Ipost) {
+    return this.http.put(`${HOST}/posts/${post.id}`, post);
+  }
+
+  getTags(): Observable<Itag[]> {
+    return this.http.get(`${HOST}/tags`) as Observable<Itag[]>;
   }
 
   // getUserPosts(id: number): Observable<string[]> {

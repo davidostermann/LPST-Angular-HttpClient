@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../core/user.service';
 import { Iuser } from '../core/iuser';
+import { MatSnackBar } from '@angular/material';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-form',
@@ -8,22 +10,29 @@ import { Iuser } from '../core/iuser';
   styleUrls: ['./user-form.component.css']
 })
 export class UserFormComponent implements OnInit {
-
   user: Iuser;
 
-  constructor(private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private snackBar: MatSnackBar,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    this.user = this.userService.selectedUser;
-    console.log('ONINIT user : ', this.user);
+    // this.user = this.userService.selectedUser;
+    this.userService.userReady$.subscribe(u => (this.user = u));
   }
 
   onSubmit() {
-    console.log('ONSUBMIT user : ', this.user);
-    // 1. this.userService.update(this.user)
-    this.userService.update().subscribe();
-    // 2. Afficher un message de confirmation de la mise à jour
-    // 3. Fermer le formulaire d'edition
+    this.userService.update().subscribe(user => {
+      this.snackBar.open('Updated user 🍕 !', 'Couicou', {
+        duration: 500
+      });
+      // this.router.navigate(['/users', this.user.id]);
+      setTimeout(() => {
+        this.router.navigate(['../'], { relativeTo: this.route });
+      }, 1000);
+    });
   }
-
 }

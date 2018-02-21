@@ -1,7 +1,8 @@
 <div *ngIf="posts && posts.length > 0">
   <mat-list>
     <mat-list-item *ngFor="let p of posts">
-      {{ p.title }}
+      <a href="" (click)="selectPost(p.id); $event.preventDefault()">{{ p.title }}</a>
+      <button (click)="selectPost(p.id)">VOIR</button>
     </mat-list-item>
   </mat-list>
 </div>

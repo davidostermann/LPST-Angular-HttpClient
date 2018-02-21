@@ -1,0 +1,42 @@
+<div *ngIf="post">
+  <form #postForm="ngForm" (ngSubmit)="onSubmit()" fxLayout="column" class="container">
+    <mat-slide-toggle name="online" [(ngModel)]="post.online" >
+      {{ post.online ? 'Online' : 'Offline' }}
+    </mat-slide-toggle>
+    <mat-form-field>
+      <input matInput type="text" name="title" [(ngModel)]="post.title">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" name="desc" [(ngModel)]="post.desc">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="text" name="img" [(ngModel)]="post.img">
+    </mat-form-field>
+    <mat-form-field>
+      <textarea matInput rows="5" name="text" [(ngModel)]="post.text"></textarea>
+    </mat-form-field>
+    <p class="mat-h4">Level : </p>
+    <mat-radio-group [ngStyle]="{paddingBottom: '1em'}" name="level" [(ngModel)]="post.level">
+      <mat-radio-button [value]="1">Beginner</mat-radio-button>
+      <mat-radio-button [value]="2">Confirmed</mat-radio-button>
+      <mat-radio-button [value]="3">Expert</mat-radio-button>
+    </mat-radio-group>
+    <mat-form-field>
+      <mat-label>Level</mat-label>
+      <mat-select name="level2" [(ngModel)]="post.level">
+        <!-- <mat-option disabled>Choisissez</mat-option> -->
+        <mat-option [value]="1">Beginner</mat-option>
+        <mat-option [value]="2">Confirmed</mat-option>
+        <mat-option [value]="3">Expert</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Tags</mat-label>
+      <mat-select name="tags" [(ngModel)]="post.tagIds" multiple>
+        <mat-option *ngFor="let t of tags" [value]="t.id">{{ t.value }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button type="submit">Envoyer</button>
+  </form>
+</div>

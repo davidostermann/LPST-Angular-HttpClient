@@ -1,0 +1,25 @@
+<div *ngIf="post" fxLayout="row" fxLayout.xs="column" class="container">
+  <mat-card *ngIf="post">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div>by USER</div>
+      <div fxLayoutAlign="end center">
+        <button mat-icon-button color="primary">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-icon-button routerLink="edit" color="primary">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+    </div>
+    <mat-card-content>
+      <mat-card-title>{{ post.title }}</mat-card-title>
+      <mat-card-subtitle>{{ post.desc }}</mat-card-subtitle>
+      <img class="post-img" [src]="post.img">
+      <p>{{ post.text }}</p>
+      <p style="clear: both;">
+    </mat-card-content>
+  </mat-card>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

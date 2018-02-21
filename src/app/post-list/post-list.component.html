@@ -1,4 +1,4 @@
 <p *ngFor="let p of posts">
-  {{ p.title }}
+  <a href="" [routerLink]="['/posts', p.id]">{{ p.title }}</a>
 </p>
 <p *ngIf="errText">{{ errText }}</p>

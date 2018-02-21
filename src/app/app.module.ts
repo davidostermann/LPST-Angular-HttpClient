@@ -15,9 +15,13 @@ import { UserFormComponent } from './user-form/user-form.component';
 import { UserService } from './core/user.service';
 import { FormsModule } from '@angular/forms';
 import { UserPostsComponent } from './user-posts/user-posts.component';
+import { PostDetailComponent } from './post-detail/post-detail.component';
+import { PostService } from './core/post.service';
+import { PostFormComponent } from './post-detail/post-form/post-form.component';
+import { Page404Component } from './page404/page404.component';
 
 @NgModule({
-  declarations: [AppComponent, UserListComponent, PostListComponent, UserDetailComponent, UserFormComponent, UserPostsComponent],
+  declarations: [AppComponent, UserListComponent, PostListComponent, UserDetailComponent, UserFormComponent, UserPostsComponent, PostDetailComponent, PostFormComponent, Page404Component],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -27,7 +31,7 @@ import { UserPostsComponent } from './user-posts/user-posts.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [ApiService, UserService],
+  providers: [ApiService, UserService, PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,3 +1,5 @@
+import { Iuser } from './iuser';
+
 export interface Ipost {
   id?: number;
   title: string;
@@ -5,4 +7,8 @@ export interface Ipost {
   text: string;
   img: string;
   userId: number;
+  user?: Iuser;
+  online: boolean;
+  level: number;
+  tagIds: number[];
 }
