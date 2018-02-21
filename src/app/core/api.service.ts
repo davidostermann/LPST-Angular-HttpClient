@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { Iuser } from './iuser';
 import { Ipost } from './ipost';
 import { User } from './user';
-import { map } from 'rxjs/operators';
+import { map, delay, tap } from 'rxjs/operators';
 import { Itag } from './itag';
 
 const HOST = 'http://localhost:3000';
@@ -14,7 +14,9 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   getUsers(): Observable<Iuser[]> {
-    return this.http.get(`${HOST}/users`) as Observable<Iuser[]>;
+    return this.http
+      .get<Iuser[]>(`${HOST}/users`)
+      .pipe(delay(1000));
     // .pipe(
     //   map( (d: Iuser[]) => ( d.map( u => new User(u))) )
     // )
@@ -22,33 +24,45 @@ export class ApiService {
 
   getUser(id: number): Observable<Iuser> {
     // return this.http.get(`http://localhost:3000/users/${id}`) as Observable<Iuser>;
-    return this.http.get('http://localhost:3000/users/' + id) as Observable<
-      Iuser
-    >;
+    return this.http
+      .get<Iuser>('http://localhost:3000/users/' + id)
+      .pipe(delay(1000));
   }
 
   updateUser(user: Iuser): Observable<Iuser> {
-    return this.http.put(`${HOST}/users/${user.id}`, user) as Observable<Iuser>;
+    return this.http
+      .put<Iuser>(`${HOST}/users/${user.id}`, user)
+      .pipe(delay(1000));
   }
 
   getPosts(): Observable<Ipost[]> {
-    return this.http.get(`${HOST}/posts`) as Observable<Ipost[]>;
+    return this.http
+      .get<Ipost[]>(`${HOST}/posts`)
+      .pipe(delay(1000));
   }
 
   getPost(id: number): Observable<Ipost> {
-    return this.http.get(`${HOST}/posts/${id}`) as Observable<Ipost>;
+    return this.http
+      .get<Ipost>(`${HOST}/posts/${id}`)
+      .pipe(delay(1000));
   }
 
   getUserPosts(id): Observable<Ipost[]> {
-    return this.http.get(`${HOST}/users/${id}/posts`) as Observable<Ipost[]>;
+    return this.http
+      .get<Ipost[]>(`${HOST}/users/${id}/posts`)
+      .pipe(delay(1000));
   }
 
   updatePost(post: Ipost) {
-    return this.http.put(`${HOST}/posts/${post.id}`, post);
+    return this.http
+      .put<Ipost>(`${HOST}/posts/${post.id}`, post)
+      .pipe(delay(1000));
   }
 
   getTags(): Observable<Itag[]> {
-    return this.http.get(`${HOST}/tags`) as Observable<Itag[]>;
+    return this.http
+      .get<Itag[]>(`${HOST}/tags`)
+      .pipe(delay(1000));
   }
 
   // getUserPosts(id: number): Observable<string[]> {

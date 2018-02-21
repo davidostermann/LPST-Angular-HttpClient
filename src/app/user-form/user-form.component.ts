@@ -20,8 +20,10 @@ export class UserFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.user = this.userService.selectedUser;
-    this.userService.userReady$.subscribe(u => (this.user = u));
+    this.user = this.userService.selectedUser;
+    /** NO NEED si tu proteges bien ton composant avec un *ngIf
+     * this.userService.userReady$.subscribe(u => (this.user = u));
+     */
   }
 
   onSubmit() {
@@ -31,6 +33,7 @@ export class UserFormComponent implements OnInit {
       });
       // this.router.navigate(['/users', this.user.id]);
       setTimeout(() => {
+        // https://angular.io/api/router/NavigationExtras#members
         this.router.navigate(['../'], { relativeTo: this.route });
       }, 1000);
     });

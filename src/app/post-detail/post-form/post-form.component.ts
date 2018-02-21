@@ -15,21 +15,11 @@ export class PostFormComponent implements OnInit {
   constructor(private postService: PostService) {}
 
   ngOnInit() {
-    this.postService.getTags().subscribe(
-      // tags => this.tags = tags
-      (tags) => {
-        this.tags = tags;
-        console.log('this.tags : ', this.tags);
-      }
-    );
-    // this.post = this.postService.selectedPost;
-    console.log('INIT this.postService.selectedPost : ', this.postService.selectedPost);
-
-    this.postService.postReady$.subscribe(post => {
-      console.log('SUB post : ', post);
-      console.log('SUB this.postService.selectedPost : ', this.postService.selectedPost);
-      this.post = post;
-    });
+    this.postService.getTags().subscribe( tags => this.tags = tags );
+    this.post = this.postService.selectedPost;
+    /** NO NEED si tu proteges bien ton composant avec un *ngIf
+     * this.postService.postReady$.subscribe(post => this.post = post);
+     */
   }
 
   onSubmit() {

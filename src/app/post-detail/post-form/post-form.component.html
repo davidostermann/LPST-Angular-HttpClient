@@ -1,4 +1,4 @@
-<div *ngIf="post">
+<div *ngIf="post" class="container">
   <form #postForm="ngForm" (ngSubmit)="onSubmit()" fxLayout="column" class="container">
     <mat-slide-toggle name="online" [(ngModel)]="post.online" >
       {{ post.online ? 'Online' : 'Offline' }}
