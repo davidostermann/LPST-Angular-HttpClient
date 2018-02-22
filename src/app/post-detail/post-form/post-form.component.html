@@ -1,32 +1,32 @@
 <div *ngIf="post" class="container">
   <!-- <h1 class="mat-h1" *ngIf="editing">Edition</h1>
   <h1 class="mat-h1" *ngIf="!editing">Création</h1> -->
-  <h1 class="mat-h1">{{ editing ? 'Edition' : 'Création '}}</h1>
-  <form #postForm="ngForm" (ngSubmit)="onSubmit()" fxLayout="column" class="container">
+  <h1 class="mat-h1">{{ editing ? 'Edition' : 'Création d\'un article' }}</h1>
+  <form #postForm="ngForm" (ngSubmit)="onSubmit(postForm)" fxLayout="column" class="container">
     <mat-slide-toggle name="online" [(ngModel)]="post.online" >
       {{ post.online ? 'Online' : 'Offline' }}
     </mat-slide-toggle>
     <mat-form-field>
-      <input matInput type="text" name="title" [(ngModel)]="post.title">
+      <input matInput type="text" required name="title" placeholder="title" [(ngModel)]="post.title">
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" name="desc" [(ngModel)]="post.desc">
+      <input matInput type="text" required name="desc" placeholder="description" [(ngModel)]="post.desc">
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="text" name="img" [(ngModel)]="post.img">
+      <input matInput type="text" required name="img" placeholder="image" [(ngModel)]="post.img">
     </mat-form-field>
     <mat-form-field>
-      <textarea matInput rows="5" name="text" [(ngModel)]="post.text"></textarea>
+      <textarea matInput rows="5" required name="text" placeholder="text" [(ngModel)]="post.text"></textarea>
     </mat-form-field>
     <p class="mat-h4">Level : </p>
-    <mat-radio-group [ngStyle]="{paddingBottom: '1em'}" name="level" [(ngModel)]="post.level">
+    <mat-radio-group required [ngStyle]="{paddingBottom: '1em'}" name="level" placeholder="reading text" [(ngModel)]="post.level">
       <mat-radio-button [value]="1">Beginner</mat-radio-button>
       <mat-radio-button [value]="2">Confirmed</mat-radio-button>
       <mat-radio-button [value]="3">Expert</mat-radio-button>
     </mat-radio-group>
     <mat-form-field>
       <mat-label>Level</mat-label>
-      <mat-select name="level2" [(ngModel)]="post.level">
+      <mat-select name="level2" required placeholder="reading text" [(ngModel)]="post.level">
         <!-- <mat-option disabled>Choisissez</mat-option> -->
         <mat-option [value]="1">Beginner</mat-option>
         <mat-option [value]="2">Confirmed</mat-option>
@@ -35,11 +35,11 @@
     </mat-form-field>
     <mat-form-field>
       <mat-label>Tags</mat-label>
-      <mat-select name="tags" [(ngModel)]="post.tagIds" multiple>
+      <mat-select name="tags" placeholder="tags" [(ngModel)]="post.tagIds" multiple>
         <mat-option *ngFor="let t of tags" [value]="t.id">{{ t.value }}</mat-option>
       </mat-select>
     </mat-form-field>
 
-    <button mat-raised-button type="submit">{{ editing ? 'Mettre à jour' : 'Créer' }}</button>
+    <button mat-raised-button type="submit" [disabled]="postForm.invalid" >{{ editing ? 'Mettre à jour' : 'Créer' }}</button>
   </form>
 </div>

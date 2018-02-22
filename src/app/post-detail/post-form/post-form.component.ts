@@ -48,15 +48,19 @@ export class PostFormComponent implements OnInit {
 
   }
 
-  onSubmit() {
+  onSubmit(postForm) {
+    console.log('postForm.valid : ', postForm.valid);
+    if (postForm.valid) {
+      return;
+    }
+
     if (this.editing) {
-      this.postService.update().subscribe();
-    } else {
-      this.postService.create(this.post).subscribe(
-        newPost => {
+        this.postService.update().subscribe();
+      } else {
+        this.postService.create(this.post).subscribe(newPost => {
           this.router.navigate(['/posts', newPost.id]);
         });
-    }
+      }
     // else
 
 
