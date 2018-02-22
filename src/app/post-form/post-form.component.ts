@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PostService } from '../../core/post.service';
-import { Ipost } from '../../core/ipost';
-import { Itag } from '../../core/itag';
+import { PostService } from '../core/post.service';
+import { Ipost } from '../core/ipost';
+import { Itag } from '../core/itag';
 import { ActivatedRoute, Router } from '@angular/router';
 import { log } from 'util';
 
