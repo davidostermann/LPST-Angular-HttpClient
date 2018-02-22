@@ -20,7 +20,7 @@ export class UserService {
    * Il permet donc de se passer de selectedUser
    * https://stackoverflow.com/questions/44688706/make-observable-to-behave-like-promise-in-rxjs
    */
-  userReady$ = new BehaviorSubject<Iuser>(null);
+  // userReady$ = new BehaviorSubject<Iuser>(null);
 
   getUser(id): Observable<Iuser> {
     return this.api.getUser(id).pipe(

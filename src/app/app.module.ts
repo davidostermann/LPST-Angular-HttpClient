@@ -19,9 +19,21 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
 import { PostService } from './core/post.service';
 import { PostFormComponent } from './post-detail/post-form/post-form.component';
 import { Page404Component } from './page404/page404.component';
+import { DialogDeleteComponent } from './dialog-delete/dialog-delete.component';
 
 @NgModule({
-  declarations: [AppComponent, UserListComponent, PostListComponent, UserDetailComponent, UserFormComponent, UserPostsComponent, PostDetailComponent, PostFormComponent, Page404Component],
+  declarations: [
+    AppComponent,
+    UserListComponent,
+    PostListComponent,
+    UserDetailComponent,
+    UserFormComponent,
+    UserPostsComponent,
+    PostDetailComponent,
+    PostFormComponent,
+    Page404Component,
+    DialogDeleteComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -31,6 +43,7 @@ import { Page404Component } from './page404/page404.component';
     HttpClientModule,
     FormsModule
   ],
+  entryComponents: [DialogDeleteComponent],
   providers: [ApiService, UserService, PostService],
   bootstrap: [AppComponent]
 })

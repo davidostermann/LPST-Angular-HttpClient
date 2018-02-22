@@ -14,9 +14,7 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   getUsers(): Observable<Iuser[]> {
-    return this.http
-      .get<Iuser[]>(`${HOST}/users`)
-      .pipe(delay(1000));
+    return this.http.get<Iuser[]>(`${HOST}/users`).pipe(delay(1000));
     // .pipe(
     //   map( (d: Iuser[]) => ( d.map( u => new User(u))) )
     // )
@@ -36,15 +34,11 @@ export class ApiService {
   }
 
   getPosts(): Observable<Ipost[]> {
-    return this.http
-      .get<Ipost[]>(`${HOST}/posts`)
-      .pipe(delay(1000));
+    return this.http.get<Ipost[]>(`${HOST}/posts`).pipe(delay(1000));
   }
 
   getPost(id: number): Observable<Ipost> {
-    return this.http
-      .get<Ipost>(`${HOST}/posts/${id}`)
-      .pipe(delay(1000));
+    return this.http.get<Ipost>(`${HOST}/posts/${id}`).pipe(delay(1000));
   }
 
   getUserPosts(id): Observable<Ipost[]> {
@@ -53,16 +47,22 @@ export class ApiService {
       .pipe(delay(1000));
   }
 
-  updatePost(post: Ipost) {
+  createPost(post: Ipost): Observable<Ipost> {
+    return this.http.post<Ipost>(`${HOST}/posts`, post).pipe(delay(1000));
+  }
+
+  updatePost(post: Ipost): Observable<Ipost> {
     return this.http
       .put<Ipost>(`${HOST}/posts/${post.id}`, post)
       .pipe(delay(1000));
   }
 
+  deletePost(id: number): any {
+    return this.http.delete<any>(`${HOST}/posts/${id}`); // .pipe(delay(1000));
+  }
+
   getTags(): Observable<Itag[]> {
-    return this.http
-      .get<Itag[]>(`${HOST}/tags`)
-      .pipe(delay(1000));
+    return this.http.get<Itag[]>(`${HOST}/tags`).pipe(delay(1000));
   }
 
   // getUserPosts(id: number): Observable<string[]> {

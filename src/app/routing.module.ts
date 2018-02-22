@@ -27,7 +27,8 @@ const ROUTES: Routes = [
     component: UserDetailComponent,
     children: [
       { path: 'edit', component: UserFormComponent },
-      { path: 'posts', component: UserPostsComponent }
+      { path: 'posts', component: UserPostsComponent },
+      { path: 'create-post', component: PostFormComponent }
     ]
   },
   {
@@ -40,8 +41,8 @@ const ROUTES: Routes = [
     children: [{ path: 'edit', component: PostFormComponent }]
   },
   {
-    component: Page404Component,
-    path: '**'
+    path: '**',
+    component: Page404Component
   }
 ];
 

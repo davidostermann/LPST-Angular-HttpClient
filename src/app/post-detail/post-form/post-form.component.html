@@ -1,4 +1,7 @@
 <div *ngIf="post" class="container">
+  <!-- <h1 class="mat-h1" *ngIf="editing">Edition</h1>
+  <h1 class="mat-h1" *ngIf="!editing">Création</h1> -->
+  <h1 class="mat-h1">{{ editing ? 'Edition' : 'Création '}}</h1>
   <form #postForm="ngForm" (ngSubmit)="onSubmit()" fxLayout="column" class="container">
     <mat-slide-toggle name="online" [(ngModel)]="post.online" >
       {{ post.online ? 'Online' : 'Offline' }}
@@ -37,6 +40,6 @@
       </mat-select>
     </mat-form-field>
 
-    <button mat-raised-button type="submit">Envoyer</button>
+    <button mat-raised-button type="submit">{{ editing ? 'Mettre à jour' : 'Créer' }}</button>
   </form>
 </div>

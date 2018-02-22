@@ -24,12 +24,10 @@ export class PostService {
   constructor(private api: ApiService, private userService: UserService) {}
 
   getPost(id: number) {
-    return this.api
-      .getPost(id)
-      .pipe(
-        tap(post => (this.selectedPost = post)),
-        // tap(post => this.postReady$.next(post))
-      );
+    return this.api.getPost(id).pipe(
+      tap(post => (this.selectedPost = post))
+      // tap(post => this.postReady$.next(post))
+    );
     // return this.api.getPost(id).pipe(
     //   flatMap( post => this.userService.getUser(post.userId)
     //     .pipe( map( user => ({ ...post, user})))),
@@ -37,8 +35,16 @@ export class PostService {
     // );
   }
 
+  create(post: Ipost) {
+    return this.api.createPost(post);
+  }
+
   update() {
     return this.api.updatePost(this.selectedPost);
+  }
+
+  delete(id: number): any {
+    return this.api.deletePost(id);
   }
 
   getTags() {

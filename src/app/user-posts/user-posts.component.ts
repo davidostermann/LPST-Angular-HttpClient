@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class UserPostsComponent implements OnInit, OnDestroy {
   posts: Ipost[];
-  userReadySubscription;
+  getPostSubscription;
 
   constructor(public userService: UserService, private router: Router) {}
 
@@ -20,21 +20,27 @@ export class UserPostsComponent implements OnInit, OnDestroy {
     // cela va aussi créer une erreur
     // Du coup, on wrap l'appel de getPosts dans userReady$
     console.log('ngOnInit USER-POSTS');
-    this.userReadySubscription = this.userService.userReady$.subscribe(this.getUserPosts.bind(this));
+    // this.userReadySubscription = this.userService.userReady$.subscribe(this.getUserPosts.bind(this));
+    // this.getUserPosts();
+     this.getPostSubscription = this.userService
+      .getUserPosts()
+      .subscribe(posts => {
+        this.posts = posts;
+      });
   }
 
-  getUserPosts() {
-    console.log('getUserPosts USER-READY');
-    this.userService.getUserPosts().subscribe(posts => {
-      this.posts = posts;
-    });
-  }
+  // getUserPosts() {
+  //   console.log('getUserPosts USER-READY');
+  //   this.userService.getUserPosts().subscribe(posts => {
+  //     this.posts = posts;
+  //   });
+  // }
 
   selectPost(id: number) {
     this.router.navigate(['/posts', id]);
   }
 
   ngOnDestroy() {
-    this.userReadySubscription.unsubscribe();
+    this.getPostSubscription.unsubscribe();
   }
 }

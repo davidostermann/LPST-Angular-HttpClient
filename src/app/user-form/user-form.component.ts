@@ -34,7 +34,7 @@ export class UserFormComponent implements OnInit {
       // this.router.navigate(['/users', this.user.id]);
       setTimeout(() => {
         // https://angular.io/api/router/NavigationExtras#members
-        this.router.navigate(['../'], { relativeTo: this.route });
+        this.router.navigate([''], { relativeTo: this.route });
       }, 1000);
     });
   }
