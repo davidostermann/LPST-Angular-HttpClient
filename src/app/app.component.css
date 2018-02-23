@@ -9,6 +9,7 @@
 }
 
 h1.app-name {
+  display: inline-block;
   margin-left: 8px;
 }
 

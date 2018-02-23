@@ -2,8 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../core/post.service';
 import { Ipost } from '../core/ipost';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { DialogDeleteComponent } from '../dialog-delete/dialog-delete.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-post-detail',
@@ -23,16 +23,19 @@ export class PostDetailComponent implements OnInit {
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.postService
-      .getPost(id)
-      .subscribe(
-        post => (this.post = post),
-        // tslint:disable-next-line:quotemark
-        err => (this.errText = "Cet article n'existe pas")
-      );
+    this.postService.getPost(id).subscribe(
+      post => {
+        this.post = post;
+        // this.userService.getUser(id).subscribe(
+
+        // )
+      },
+      // tslint:disable-next-line:quotemark
+      err => (this.errText = "Cet article n'existe pas")
+    );
   }
 
-  openDialog(): void {
+  openDeleteDialog(): void {
     const dialogRef = this.dialog.open(DialogDeleteComponent, {
       width: '250px'
     });
@@ -40,17 +43,19 @@ export class PostDetailComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed : ', result);
       if (result) {
-          this.postService.delete(this.post.id).subscribe(() => {
-              this.router.navigate(['../'], {relativeTo: this.route});
-            }, err => {
-              console.log(err);
-            });
+        this.deletePost();
       }
     });
   }
 
   deletePost() {
-    this.openDialog();
+    this.postService.delete(this.post.id).subscribe(() => {
+        this.router.navigate(['../'], {
+          relativeTo: this.route
+        });
+      }, err => {
+        console.log(err);
+      });
   }
 }
 

@@ -43,7 +43,7 @@ export class PostService {
     return this.api.updatePost(this.selectedPost);
   }
 
-  delete(id: number): any {
+  delete(id: number): Observable<any> {
     return this.api.deletePost(id);
   }
 

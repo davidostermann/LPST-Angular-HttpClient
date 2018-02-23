@@ -33,6 +33,16 @@ export class ApiService {
       .pipe(delay(1000));
   }
 
+  createUser(user: Iuser): Observable<Iuser> {
+    return this.http
+      .post<Iuser>(`${HOST}/users`, user)
+      ; // .pipe(delay(1000));
+  }
+
+  deleteUser(id: number): any {
+    return this.http.delete<any>(`${HOST}/users/${id}`); // .pipe(delay(1000));
+  }
+
   getPosts(): Observable<Ipost[]> {
     return this.http.get<Ipost[]>(`${HOST}/posts`).pipe(delay(1000));
   }

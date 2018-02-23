@@ -6,7 +6,7 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { UserPostsComponent } from './user-posts/user-posts.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
-import { PostFormComponent } from './post-detail/post-form/post-form.component';
+import { PostFormComponent } from './post-form/post-form.component';
 import { Page404Component } from './page404/page404.component';
 
 const ROUTES: Routes = [
@@ -21,6 +21,10 @@ const ROUTES: Routes = [
     // children:  [
     //   { path: ':id', component: UserDetailComponent }
     // ]
+  },
+  {
+    component: UserFormComponent,
+    path: 'users/create-user'
   },
   {
     path: 'users/:id',

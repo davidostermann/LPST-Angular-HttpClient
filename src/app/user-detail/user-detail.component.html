@@ -7,7 +7,7 @@
         <a mat-icon-button href="" routerLink="create-post"><mat-icon>add_circle</mat-icon></a>
         <a mat-icon-button href="" routerLink="posts"><mat-icon>message</mat-icon></a>
         <a mat-icon-button href="" routerLink="edit"><mat-icon>edit</mat-icon></a>
-        <a mat-icon-button href=""><mat-icon>delete</mat-icon></a>
+        <a mat-icon-button href="" (click)="openDeleteDialog($event)"><mat-icon>delete</mat-icon></a>
       </mat-card-actions>
     </mat-card-header>
     <img mat-card-image [src]="user.image" [alt]="user.name">

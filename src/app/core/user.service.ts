@@ -29,9 +29,17 @@ export class UserService {
     );
   }
 
+  create(user: Iuser): Observable<Iuser> {
+    return this.api.createUser(user);
+  }
+
   update(): Observable<Iuser> {
     // console.log('USER-SERVICE this.selectedUser : ', this.selectedUser);
     return this.api.updateUser(this.selectedUser);
+  }
+
+  delete(id: number): Observable<any> {
+    return this.api.deleteUser(id);
   }
 
   getUserPosts() {

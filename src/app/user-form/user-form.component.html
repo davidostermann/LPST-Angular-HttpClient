@@ -1,12 +1,20 @@
-<form #userForm="ngForm" (ngSubmit)="onSubmit()" fxLayout="column" class="container">
+<form #userForm="ngForm"
+  (ngSubmit)="onSubmit(userForm)"
+  fxLayout="column" class="container">
   <mat-form-field>
-    <input matInput type="text" name="name" [(ngModel)]="user.name">
+    <input matInput type="text" required
+      placeholder="name" name="name"
+      [(ngModel)]="user.name">
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="text" name="jobTitle" [(ngModel)]="user.jobTitle">
+    <input matInput type="text" required
+      placeholder="jobtitle" name="jobTitle"
+      [(ngModel)]="user.jobTitle">
   </mat-form-field>
   <mat-form-field>
-    <input matInput type="text" name="img" [(ngModel)]="user.image">
+    <input matInput type="text" required
+      placeholder="image" name="img"
+      [(ngModel)]="user.image">
   </mat-form-field>
-  <button mat-raised-button type="submit">Envoyer</button>
+  <button mat-raised-button type="submit" [disabled]="!userForm.valid">Envoyer</button>
 </form>
